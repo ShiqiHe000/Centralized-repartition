@@ -34,3 +34,20 @@ The code performs a random `hp-refinement` scheme, meaning that each element ada
  <img src="pic/visit0002.png" width=500>
   
  <img src="pic/visit0003.png" width=500>
+ 
+ ## Distributed load balancing
+ In `load_balancing.f90` subroutine `H1_PARTITION_LOCAL`, distributed load balancing is achieved. However, grid coarsen is not available yet. 
+ 
+ The centralized load balancing has processor P0 in the critical path that determines how fast the load balancing may complete. In the distributed version, each processor collaborates with each other to have a local copy of the prefix sum of the load. The next step, each processor calculate the local element map and share the information globally so that a global map can form. 
+ 
+ `MPI_EXCAN` is applied to obtain the global prefix sum. `MPI_ALLTOALLV` is used to transfer data.
+ 
+ ### Strategy steps
+ 1. each processor calculates the weights of elements
+ 2. calculate the local prefixed sum by using `MPI_EXSCAN`
+ 3. last processor computes the `Optimal Bottleneck` and broadcasts it
+ 4. get the processor mapping
+ 5. `MPI_BCAST` the element re-allocate information among processors
+ 6. transfer elements by using `MPI_ALLTOALLV`
+ 7. Compute the load balancing ratio
+ 
