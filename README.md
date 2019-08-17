@@ -30,10 +30,7 @@ The code performs a random `hp-refinement` scheme, meaning that each element ada
  
  
  <img src="pic/visit0000.png" width=500>
- ![Image of performance1](/pic/visit0000.png)
- 
+
  <img src="pic/visit0002.png" width=500>
- ![Image of performance2](/pic/visit0002.png)
   
-  <img src="pic/visit0003.png" width=500>
- ![Image of performance3](/pic/visit0003.png)
+ <img src="pic/visit0003.png" width=500>
