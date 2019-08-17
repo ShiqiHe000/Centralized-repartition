@@ -1,0 +1,60 @@
+#TARGET: DEPENDENCY	# ONLY ALL THE DEPENDENCIES ARE READY, THE TARGET WILL BE MADE
+#<TAB> COMMAND		# ALWAYS PUT A TAB BEFORE A COMMAND THAT CAN PRODUCE THE DEPENDENCIES
+
+# Setting make all as default
+.DEFAULT_GOAL := all
+
+# MPI compiler
+FC = mpif90
+
+# LINKER flag
+GEN_OBJ_FILE = ${FC} -c
+GEN_EXE = ${FC} -o
+
+# This link stores the object files
+OBJS = input.o \
+		size.o \
+		mesh.o \
+		adapt.o \
+		grid_coarsen.o\
+		write_fields.o \
+		load_partition.o \
+		h_coarsening.o\
+		main_loop.o
+
+# The executable file name
+EXE = main.exe
+
+# Dependency chain
+input.o: input.f90
+size.o: size.f90
+mesh.o: mesh.f90
+adapt.o: adapt.f90
+grid_coarsening.o: grid_coarsen.f90
+write_fields.o: write_fields.f90
+load_partition.o: load_partition.f90
+h_coarsening.o: h_coarsening.f90
+main_loop.o: main_loop.f90
+
+
+# Generater the object files
+%.o: %.f90
+	${GEN_OBJ_FILE} $<
+
+${EXE}: ${OBJS}
+	${GEN_EXE} ${EXE} ${OBJS}
+	
+	
+# Make all target
+all: ${EXE}
+	@echo "------------------------------------------------------------"
+	@echo "Makefile succeed"
+	@echo "------------------------------------------------------------"
+	
+	
+# Run the exe file
+run: ${EXE}
+	mpirun -np 4 ${EXE}
+	
+clean:
+	rm -rf *.exe *.o *.mod *.dat *.txt
