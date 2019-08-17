@@ -27,8 +27,13 @@ The code performs a random `hp-refinement` scheme, meaning that each element ada
 
 ## Performance
  Here is the performance of the program:
- ![Image of performance1](https://github.com/ShiqiHe000/Centralized-repartition/blob/master/pic/visit0000.png = 250x250)
  
- ![Image of performance2](https://github.com/ShiqiHe000/Centralized-repartition/blob/master/pic/visit0002.png)
+ 
+ <img src="pic/visit0000.png" width=500>
+ ![Image of performance1](/pic/visit0000.png)
+ 
+ <img src="pic/visit0002.png" width=500>
+ ![Image of performance2](/pic/visit0002.png)
   
- ![Image of performance3](https://github.com/ShiqiHe000/Centralized-repartition/blob/master/pic/visit0003.png)
+  <img src="pic/visit0003.png" width=500>
+ ![Image of performance3](/pic/visit0003.png)
